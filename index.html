@@ -34,6 +34,7 @@
 <div class="reveal">
 <div class="slides">
 
+
 <section data-markdown>
 	<script type="text/template">
 		# Decorators
@@ -44,12 +45,83 @@
 		<https://github.com/drapergem/draper>
 	</script>
 </section>
+
+
+<section data-markdown>
+	<script type="text/template">
+	# What is a Decorator?
+	</script>
+</section>
+
+
+<section data-markdown>
+	<script type='text/template'>
+		> In object-oriented programming, the decorator pattern (also known as Wrapper, an alternative naming shared with the Adapter pattern) is a design pattern that allows behavior to be added to an individual object, either statically or dynamically, without affecting the behavior of other objects from the same class.
+	</script>
+</section>
+
+
+<section data-markdown>
+	<script type='text/template'>
+	# A disclaimer
+	<br>
+
+  Don't use Decorators, or Presenters, until you're in pain. Your models should be
+  bursting at the seams.
+	</script>
+</section>
+
+
+<section data-markdown>
+	<script type='text/template'>
+	# Your views should be stupid.
+	</script>
+</section>
+
+
+<section>
+  <h2>All too common view code.</h2>
+	<pre>
+	  <code data-trim>
+<h1>Show user</h1>
+
+<dl class="dl-horizontal">
+  <% if @user.public_email %>
+    <dt>Email:</dt>
+    <dd><%= @user.email %></dd>
+  <% else %>
+    <dt>Email Unavailable:</dt>
+    <dd><%= link_to 'Request Communication', '#', class: 'btn btn-default btn-xs' %></dd>
+  <% end %>
+
+  <dt>Name:</dt>
+  <dd>
+    <% if @user.first_name || @user.last_name %>
+      <%= "#{ @user.first_name } #{ @user.last_name }".strip %>
+    <% else %>
+      No name provided.
+    <% end %>
+  </dd>
+  
+  <dt>Joined:</dt>
+  <dd><%= @user.created_at.strftime("%A, %B %e") %></dd>
+  
+  <!-- ... -->
+  
+</dl>
+		</code>
+	</pre>
+</section>
+
+
 <section data-markdown>
 	<script type="text/template">
 		# Kthxbai.
 		### John Otander / [johnotander.com](http://www.johnotander.com)
 	</script>
 </section>
+
+
 <section data-markdown>
 	<script type='text/template'>
 	## Resources
@@ -82,6 +154,7 @@ Reveal.initialize({
 	progress: true,
 	history: true,
 	center: true,
+	fragments: true,
 
 	theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
 	transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
