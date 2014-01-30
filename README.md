@@ -1,4 +1,4 @@
-# Tidying Up Your Views with Decorators
+# Decorators on Rails
 
 A lightening talk for [localmotion](http://localmotion.io) about tidying up view logic in Rails apps using the Decorator Pattern and Draper gem.
 
