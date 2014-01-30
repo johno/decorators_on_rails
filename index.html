@@ -274,6 +274,58 @@ end
 </section>
 
 
+<section>
+  <h2>Implementing the decorator.</h2>
+  <pre>
+    <code data-trim>
+class UserDecorator < Draper::Decorator
+  delegate_all
+
+  def email_or_request_button
+    public_email ? email : h.link_to('Request Email', '#', class: 'btn btn-default btn-xs').html_safe
+  end
+
+  def full_name
+    if first_name.blank? && last_name.blank?
+      'No name provided.'
+    else
+      "#{ first_name } #{ last_name }".strip
+    end
+  end
+
+  def joined_at
+    created_at.strftime("%B %Y")
+  end
+end
+    </code>
+  </pre>
+</section>
+
+
+<section>
+  <h2>Now we need to decorate.</h2>
+  <pre>
+    <code data-trim>
+class UsersController < ApplicationController
+  before_action :do_stuff
+
+  # GET /users
+  # GET /users.json
+  def index
+    @users = User.all.decorate
+  end
+
+  # GET /users/1
+  # GET /users/1.json
+  def show
+    @user = User.find.decorate
+  end
+end
+    </code>
+  </pre>
+</section>
+
+
 <section data-markdown>
 	<script type="text/template">
 		# Kthxbai.
