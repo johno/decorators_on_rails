@@ -326,10 +326,62 @@ end
 </section>
 
 
-<section data-markdown>
-	<script type="text/template">
-		## Model v Decorator.
-	</script>
+<section class="code">
+  <h2>The original view.</h2>
+  <pre>
+    <code data-trim>
+<h1>Show user</h1>
+
+<dl class="dl-horizontal">
+  <% if @user.public_email %>
+    <dt>Email:</dt>
+    <dd><%= @user.email %></dd>
+  <% else %>
+    <dt>Email Unavailable:</dt>
+    <dd><%= link_to 'Request Communication', '#', class: 'btn btn-default btn-xs' %></dd>
+  <% end %>
+
+  <dt>Name:</dt>
+  <dd>
+    <% if @user.first_name || @user.last_name %>
+      <%= "#{ @user.first_name } #{ @user.last_name }".strip %>
+    <% else %>
+      No name provided.
+    <% end %>
+  </dd>
+  
+  <dt>Joined:</dt>
+  <dd><%= @user.created_at.strftime("%A, %B %e") %></dd>
+  
+  <!-- ... -->
+  
+</dl>
+    </code>
+  </pre>
+</section>
+
+
+<section class="code">
+  <h2>The new, decorated view.</h2>
+  <pre>
+    <code data-trim>
+<h1><%= @user.full_name %></h1>
+
+<dl class="dl-horizontal">
+  <dt><%= @user.email_attr_text %></dt>
+  <dd><%= @user.email_or_request_button %></dd>
+
+  <dt>Name:</dt>
+  <dd><%= @user.full_name %></dd>
+  
+  <dt>Joined:</dt>
+  <dd><%= @user.joined_at %></dd>
+  
+  <!-- ... -->
+  
+</dl>
+    </code>
+  </pre>
 </section>
 
 
